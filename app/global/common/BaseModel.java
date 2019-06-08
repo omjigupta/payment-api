@@ -1,18 +1,22 @@
 package global.common;
 
-import io.ebean.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Id;
+/**
+ * Base model
+ */
 
 @Getter
 @Setter
-public class BaseModel extends Model {
+public class BaseModel {
 
-    @Id
     private Long id;
     private long updatedAt, createdAt;
+
+    public BaseModel() {
+        updatedAt = createdAt = System.currentTimeMillis() / 1000;
+    }
 
     public enum Fields {updatedAt, createdAt, id}
 }

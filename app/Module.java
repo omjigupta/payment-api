@@ -1,4 +1,5 @@
 import com.google.inject.AbstractModule;
+import global.configuration.database.DatabaseSetup;
 
 /**
  * This class is a Guice module that tells Guice how to bind several
@@ -14,7 +15,7 @@ public class Module extends AbstractModule {
 
     @Override
     public void configure() {
-        //bind(AccountRepository.class).to(AccountRepositoryImpl.class);
+        bind(DatabaseSetup.class).asEagerSingleton();
     }
 
 }
