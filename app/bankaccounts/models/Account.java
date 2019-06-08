@@ -2,6 +2,7 @@ package bankaccounts.models;
 
 
 import global.common.BaseModel;
+import global.common.Currency;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,6 +20,6 @@ public class Account extends BaseModel implements Serializable {
 
     private Double accountNumber;
     private BigDecimal balance;
-    private String currency;
+    private Currency currency;
 
 }

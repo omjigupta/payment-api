@@ -1,12 +1,12 @@
 package global.configuration.jooq;
 
+import com.google.inject.Inject;
 import lombok.NonNull;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import org.jooq.meta.Database;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**

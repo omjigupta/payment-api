@@ -15,7 +15,7 @@ public class Module extends AbstractModule {
 
     @Override
     public void configure() {
-        bind(DatabaseSetup.class).asEagerSingleton();
+        //bind(DatabaseSetup.class).asEagerSingleton();
     }
 
 }

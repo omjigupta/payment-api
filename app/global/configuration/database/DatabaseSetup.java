@@ -1,8 +1,8 @@
 package global.configuration.database;
 
+import com.google.inject.Inject;
 import global.configuration.jooq.JooqClient;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
