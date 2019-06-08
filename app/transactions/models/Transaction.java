@@ -7,7 +7,7 @@ import org.javamoney.moneta.Money;
 
 @Data
 @Builder
-public class Transaction {
+public final class Transaction {
 
     private String transferId;
     private Long senderAccountId;
