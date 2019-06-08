@@ -21,7 +21,7 @@ libraryDependencies += "org.jooq" % "jooq-meta" % "3.11.11"
 libraryDependencies += "org.jooq" % "jooq-codegen" % "3.11.11"
 
 //money and currency calculation
-libraryDependencies += "org.javamoney" % "moneta" % "1.3"
+libraryDependencies += "org.javamoney" % "moneta" % "1.3" pomOnly()
 
 
 
