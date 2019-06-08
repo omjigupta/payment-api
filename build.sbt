@@ -21,6 +21,10 @@ libraryDependencies += "org.jooq" % "jooq" % "3.11.11"
 libraryDependencies += "org.jooq" % "jooq-meta" % "3.11.11"
 libraryDependencies += "org.jooq" % "jooq-codegen" % "3.11.11"
 
+//money and currency calculation
+libraryDependencies += "org.javamoney" % "moneta" % "1.3"
+
+
 
 // Test Database
 libraryDependencies += "com.h2database" % "h2" % "1.4.194"
