@@ -54,6 +54,7 @@ public class DatabaseSetup {
                 .column(CUSTOMER.ID, SQLDataType.BIGINT.identity(true))
                 .column(CUSTOMER.FIRST_NAME, SQLDataType.VARCHAR.length(64).nullable(false))
                 .column(CUSTOMER.LAST_NAME, SQLDataType.VARCHAR.length(64).nullable(false))
+                .column(CUSTOMER.CUSTOMER_GOVT_ID, SQLDataType.VARCHAR.length(12).nullable(false))
                 .constraints(
                         constraint("PK_CUSTOMER").primaryKey("id")
                 )
@@ -74,9 +75,9 @@ public class DatabaseSetup {
 
     private void populateTables() {
         jooq.client()
-                .insertInto(CUSTOMER, CUSTOMER.ID, CUSTOMER.FIRST_NAME, CUSTOMER.LAST_NAME)
-                .values(1001L, "Om", "Ji")
-                .values(2001L, "Suvesh", "Kumar")
+                .insertInto(CUSTOMER, CUSTOMER.ID, CUSTOMER.FIRST_NAME, CUSTOMER.LAST_NAME, CUSTOMER.CUSTOMER_GOVT_ID)
+                .values(1001L, "Om", "Ji", "OMJI101")
+                .values(2001L, "Suvesh", "Kumar", "SUVI201")
                 .execute();
 
         jooq.client()
@@ -88,6 +89,8 @@ public class DatabaseSetup {
 
 
     private void cleanUpDatabase() {
+        jooq.client().dropTableIfExists(ACCOUNT).execute();
+        jooq.client().dropTableIfExists(CUSTOMER).execute();
     }
 
     private Table<?> getTable(String tableName) {

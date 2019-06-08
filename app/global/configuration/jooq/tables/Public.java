@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 
+import global.configuration.jooq.DefaultCatalog;
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;

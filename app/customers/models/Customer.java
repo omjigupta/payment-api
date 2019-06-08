@@ -16,4 +16,5 @@ public class Customer extends BaseModel implements Serializable {
 
     private String firstName;
     private String lastName;
+    private String customerGovtId;
 }

@@ -2,6 +2,7 @@ package global.configuration.jooq.records;
 
 import javax.annotation.Generated;
 
+
 import global.configuration.jooq.tables.Customer;
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -40,16 +41,16 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
     }
 
     /**
-     * Setter for <code>PUBLIC.customer.national_id</code>.
+     * Setter for <code>PUBLIC.customer.customerGovtId</code>.
      */
-    public void setNationalId(String value) {
+    public void setCustomerGovtId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.customer.national_id</code>.
+     * Getter for <code>PUBLIC.customer.customerGovtId</code>.
      */
-    public String getNationalId() {
+    public String getCustomerGovtId() {
         return (String) get(1);
     }
 
@@ -126,7 +127,7 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
      */
     @Override
     public Field<String> field2() {
-        return Customer.CUSTOMER.NATIONAL_ID;
+        return Customer.CUSTOMER.CUSTOMER_GOVT_ID;
     }
 
     /**
@@ -158,7 +159,7 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
      */
     @Override
     public String component2() {
-        return getNationalId();
+        return getCustomerGovtId();
     }
 
     /**
@@ -190,7 +191,7 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
      */
     @Override
     public String value2() {
-        return getNationalId();
+        return getCustomerGovtId();
     }
 
     /**
@@ -223,7 +224,7 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
      */
     @Override
     public CustomerRecord value2(String value) {
-        setNationalId(value);
+        setCustomerGovtId(value);
         return this;
     }
 
@@ -271,11 +272,11 @@ public class CustomerRecord extends UpdatableRecordImpl<CustomerRecord> implemen
     /**
      * Create a detached, initialised CustomerRecord
      */
-    public CustomerRecord(Long id, String nationalId, String firstName, String lastName) {
+    public CustomerRecord(Long id, String customerGovtId, String firstName, String lastName) {
         super(Customer.CUSTOMER);
 
         set(0, id);
-        set(1, nationalId);
+        set(1, customerGovtId);
         set(2, firstName);
         set(3, lastName);
     }

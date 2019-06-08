@@ -66,6 +66,11 @@ public class Customer extends TableImpl<CustomerRecord> {
     public final TableField<CustomerRecord, String> LAST_NAME = createField("last_name", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "");
 
     /**
+     * The column <code>PUBLIC.customer.customerGovtID</code>.
+     */
+    public final TableField<CustomerRecord, String> CUSTOMER_GOVT_ID = createField("customer_govt_id", org.jooq.impl.SQLDataType.VARCHAR(64).nullable(false), this, "");
+
+    /**
      * Create a <code>PUBLIC.customer</code> table reference
      */
     public Customer() {

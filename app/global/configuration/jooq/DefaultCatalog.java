@@ -1,4 +1,4 @@
-package global.configuration.jooq.tables;
+package global.configuration.jooq;
 
 
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import global.configuration.jooq.tables.Public;
 import org.jooq.Schema;
 import org.jooq.impl.CatalogImpl;
 
