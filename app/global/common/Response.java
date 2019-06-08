@@ -18,6 +18,7 @@ public class Response {
         response.data = data;
         response.message = "success";
         response.success = true;
+        response.internalStatus = 200;
         return response;
     }
 
@@ -26,6 +27,7 @@ public class Response {
         response.data = data;
         response.message = message;
         response.success = true;
+        response.internalStatus = 200;
         return response;
     }
 

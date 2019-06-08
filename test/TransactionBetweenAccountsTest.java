@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import play.test.WithApplication;
 import transactions.Service.TransactionServiceImpl;
 import transactions.models.Transaction;
 
@@ -16,10 +17,10 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-public class TransactionBetweenAccountsTest {
+public class TransactionBetweenAccountsTest extends WithApplication {
     private static final String AMOUNT = "2000.60";
-    private static final String SENDER_ACC = "112233";
-    private static final String RECEIVER_ACC = "334455";
+    private static final String SENDER_ACC = "533000";
+    private static final String RECEIVER_ACC = "324800";
     private static final String CURRENCY = "INR";
 
     @Mock

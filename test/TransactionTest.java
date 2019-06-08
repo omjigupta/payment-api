@@ -1,5 +1,4 @@
 import com.fasterxml.jackson.databind.JsonNode;
-import global.common.TransactionStatus;
 import org.junit.Test;
 import play.libs.Json;
 import play.mvc.Http;
@@ -18,9 +17,11 @@ import static play.test.Helpers.contentAsString;
 
 public class TransactionTest extends WithApplication {
 
+    private static final String ENDPOINT = "/v1/transactions";
+
     private static final String AMOUNT = "2000.60";
-    private static final String SENDER_ACCOUNT = "112233";
-    private static final String RECEIVER_ACCOUNT = "334455";
+    private static final String SENDER_ACCOUNT = "533000";
+    private static final String RECEIVER_ACCOUNT = "324800";
     private static final String CURRENCY = "INR";
 
     @Test
@@ -28,7 +29,7 @@ public class TransactionTest extends WithApplication {
         final Result transfer = Helpers.route(this.app,
                 new Http.RequestBuilder()
                         .method(POST)
-                        .uri("/v1/transactions")
+                        .uri(ENDPOINT)
                         .bodyJson(toJson(TransactionRequestDTO.builder()
                                 .amount(AMOUNT)
                                 .senderAccountId(SENDER_ACCOUNT)
@@ -40,7 +41,7 @@ public class TransactionTest extends WithApplication {
 
         assertThat(transfer.status()).isEqualTo(CREATED);
         responseContent.has("status");
-        assertThat(responseContent.get("status").textValue()).isEqualTo(TransactionStatus.valueOf("SUCCESS"));
+        assertThat(responseContent.get("status").textValue()).isEqualTo("SUCCESS");
     }
 
     @Test
@@ -48,7 +49,7 @@ public class TransactionTest extends WithApplication {
         final Result performTransfer = Helpers.route(this.app,
                 new Http.RequestBuilder()
                         .method(POST)
-                        .uri("/v1/transactions")
+                        .uri(ENDPOINT)
                         .bodyJson(toJson(TransactionRequestDTO.builder()
                                 .amount(AMOUNT)
                                 .senderAccountId(SENDER_ACCOUNT)
