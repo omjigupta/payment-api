@@ -1,13 +1,12 @@
 package global.configuration.jooq;
 
 import com.google.inject.Inject;
-import lombok.NonNull;
+import com.google.inject.Singleton;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
-import org.jooq.meta.Database;
+import play.api.db.Database;
 
-import javax.inject.Singleton;
 
 /**
  * Jooq database client
@@ -21,7 +20,7 @@ public class JooqClient {
     private DSLContext jooq;
 
     @Inject
-    public JooqClient(@NonNull Database database) {
+    public JooqClient(Database database) {
         this.database = database;
         this.jooq = DSL.using(this.database.getConnection(), SQLDialect.H2);
     }
