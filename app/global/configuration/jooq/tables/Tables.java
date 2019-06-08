@@ -25,6 +25,10 @@ public class Tables {
      */
     public static final Customer CUSTOMER = global.configuration.jooq.tables.Customer.CUSTOMER;
 
+    /**
+     * The table <code>PUBLIC.transaction</code>.
+     */
+    public static final Transaction TRANSACTION = global.configuration.jooq.tables.Transaction.TRANSACTION;
 
 }
 

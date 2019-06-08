@@ -17,8 +17,8 @@ import static play.libs.Json.toJson;
 public final class TransactionState {
 
     private TransactionStatus status;
-    private Account senderAccountId;
-    private Account receiverAccountId;
+    private Account senderAccount;
+    private Account receiverAccount;
     private BigDecimal amount;
     private String currency;
 

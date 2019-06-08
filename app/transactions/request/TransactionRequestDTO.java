@@ -1,7 +1,9 @@
 package transactions.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import play.mvc.Http;
 
 import static play.libs.Json.fromJson;
@@ -13,6 +15,8 @@ import static play.libs.Json.fromJson;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransactionRequestDTO {
 
     private String senderAccountId;

@@ -1,4 +1,4 @@
-import bankaccounts.repository.AccountRepository;
+import bankaccounts.repository.AccountRepositoryImpl;
 import global.common.TransactionStatus;
 import org.javamoney.moneta.Money;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import transactions.Service.TransactionService;
+import transactions.Service.TransactionServiceImpl;
 import transactions.models.Transaction;
 
 import java.math.BigDecimal;
@@ -23,10 +23,10 @@ public class TransactionBetweenAccountsTest {
     private static final String CURRENCY = "INR";
 
     @Mock
-    private AccountRepository accountRepository;
+    private AccountRepositoryImpl accountRepository;
 
     @InjectMocks
-    private TransactionService transactionService;
+    private TransactionServiceImpl transactionService;
 
     @Before
     public void setUp() {

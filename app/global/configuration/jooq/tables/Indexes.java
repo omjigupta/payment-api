@@ -3,8 +3,6 @@ package global.configuration.jooq.tables;
 
 import javax.annotation.Generated;
 
-import global.configuration.jooq.tables.Account;
-import global.configuration.jooq.tables.Customer;
 import org.jooq.Index;
 import org.jooq.OrderField;
 import org.jooq.impl.Internal;
@@ -29,6 +27,7 @@ public class Indexes {
 
     public static final Index PRIMARY_KEY_A = Indexes0.PRIMARY_KEY_A;
     public static final Index PRIMARY_KEY_C = Indexes0.PRIMARY_KEY_C;
+    public static final Index PRIMARY_KEY_T = Indexes0.PRIMARY_KEY_T;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -37,5 +36,6 @@ public class Indexes {
     private static class Indexes0 {
         public static Index PRIMARY_KEY_A = Internal.createIndex("PRIMARY_KEY_A", Account.ACCOUNT, new OrderField[] { Account.ACCOUNT.ID }, true);
         public static Index PRIMARY_KEY_C = Internal.createIndex("PRIMARY_KEY_C", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.ID }, true);
+        public static Index PRIMARY_KEY_T = Internal.createIndex("PRIMARY_KEY_T", Transaction.TRANSACTION, new OrderField[] { Transaction.TRANSACTION.ID }, true);
     }
 }

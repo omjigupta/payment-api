@@ -16,6 +16,7 @@ import java.util.List;
 
 import static global.configuration.jooq.tables.Tables.CUSTOMER;
 import static global.configuration.jooq.tables.Account.ACCOUNT;
+import static global.configuration.jooq.tables.Tables.TRANSACTION;
 import static org.jooq.impl.DSL.constraint;
 
 /**
@@ -46,6 +47,7 @@ public class DatabaseSetup {
 
         Logger.info(() -> "In-Memory Bank Customers: \n" + customers.toString());
         Logger.info(() -> "In-Memory Bank Accounts: \n" + account.toString());
+
     }
 
     private void createTables() {
@@ -71,6 +73,20 @@ public class DatabaseSetup {
                         constraint("PK_ACCOUNT").primaryKey("id")
                 )
                 .execute();
+
+        jooq.client()
+                .createTableIfNotExists(TRANSACTION)
+                .column(TRANSACTION.ID, SQLDataType.BIGINT.identity(true))
+                .column(TRANSACTION.SENDER_ACCOUNT, SQLDataType.BIGINT)
+                .column(TRANSACTION.RECEIVER_ACCOUNT, SQLDataType.BIGINT)
+                .column(TRANSACTION.AMOUNT, SQLDataType.DECIMAL(10, 2).nullable(false))
+                .column(TRANSACTION.CURRENCY, SQLDataType.VARCHAR(3).nullable(false))
+                .column(TRANSACTION.DATE_TIME, SQLDataType.TIMESTAMP(1))
+                .column(TRANSACTION.TRANSACTION_ID, SQLDataType.VARCHAR(50).nullable(false))
+                .constraints(
+                        constraint("PK_TRANSACTION").primaryKey("id")
+                )
+                .execute();
     }
 
     private void populateTables() {
@@ -78,12 +94,16 @@ public class DatabaseSetup {
                 .insertInto(CUSTOMER, CUSTOMER.ID, CUSTOMER.FIRST_NAME, CUSTOMER.LAST_NAME, CUSTOMER.CUSTOMER_GOVT_ID)
                 .values(1001L, "Om", "Ji", "OMJI101")
                 .values(2001L, "Suvesh", "Kumar", "SUVI201")
+                .values(3001L, "Ankit", "Agnihotri", "ANKT301")
+                .values(4001L, "Ashwani", "Kumar", "ASH401")
                 .execute();
 
         jooq.client()
                 .insertInto(ACCOUNT, ACCOUNT.ID, ACCOUNT.ACCOUNT_NUMBER, ACCOUNT.CUSTOMER_ID, ACCOUNT.BALANCE, ACCOUNT.CURRENCY)
                 .values(100L, 533000L, 1001L, new BigDecimal(5000.50), Currency.INR.name())
                 .values(200L, 124800L, 2001L, new BigDecimal(10), Currency.EUR.name())
+                .values(300L, 324800L, 3001L, new BigDecimal(1000), Currency.INR.name())
+                .values(400L, 424800L, 4001L, new BigDecimal(13240), Currency.USD.name())
                 .execute();
     }
 
@@ -91,6 +111,7 @@ public class DatabaseSetup {
     private void cleanUpDatabase() {
         jooq.client().dropTableIfExists(ACCOUNT).execute();
         jooq.client().dropTableIfExists(CUSTOMER).execute();
+        jooq.client().dropTableIfExists(TRANSACTION).execute();
     }
 
     private Table<?> getTable(String tableName) {
