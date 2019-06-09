@@ -1,7 +1,7 @@
 # Money Transfer Api
 
 
-# play-java-payment application v2.6 + H2 DB + Jooq (Play JPA implementation)
+## play-java-payment application v2.6 + H2 DB + Jooq (Play JPA implementation)
 
 This is a starter application that has base setup of Play 2.6 with H2 as database. This repository will constantly updated on better changes.
 
@@ -24,11 +24,15 @@ And then go to http://localhost:9000 to see the running web application.
 1) Download the payment-api-0.1.tgz file available in the root of the project. If you clone this repo you will get inside the payment-api main directory.
 2) Extract the tar file in a folder of your preference.
 
-```tar -xvzf /path/to/payment-api-0.1.tgz ```
+```
+tar -xvzf /path/to/payment-api-0.1.tgz
+```
 
 3) You can either navigate to the extracted folder or execute the app from the folder you are.
 
-```payment-api-0.1/bin/payment-api -Dplay.http.secret.key=omjigupta```
+```
+payment-api-0.1/bin/payment-api -Dplay.http.secret.key=omjigupta
+```
 
 
 ## Testing in console
@@ -77,4 +81,5 @@ Host: localhost:9000
 }
 ```
 * HTTP Response:
+
 ![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_1.png)
