@@ -34,8 +34,8 @@ sbt test
 ## Endpoints:
 
 ### (GET) Get the Balance of Specific Account
-![balance] (https://github.com/omjigupta/payment-api/blob/master/screenshots/balance_api.png)
+![balance](https://github.com/omjigupta/payment-api/blob/master/screenshots/balance_api.png)
 ### (GET) Checking Balance if Account does not Exist
-![wrongAccount] (https://github.com/omjigupta/payment-api/blob/master/screenshots/balance_wrongAccount.png)
+![wrongAccount](https://github.com/omjigupta/payment-api/blob/master/screenshots/balance_wrongAccount.png)
 ### (POST)Transfers money between two accounts
-![transfer] (https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_1.png)
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_1.png)
