@@ -6,7 +6,6 @@ import javafx.util.Pair;
 import lombok.NonNull;
 import org.javamoney.moneta.Money;
 
-import javax.inject.Singleton;
 import javax.money.CurrencyUnit;
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -15,11 +14,10 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * Exchange service implementation
+ * Exchange service implementation which uses hardcoded exchange rates
  * @see ExchangeService
  * @author omji
  */
-@Singleton
 public class ExchangeServiceImpl implements ExchangeService {
 
     /**
@@ -46,17 +44,12 @@ public class ExchangeServiceImpl implements ExchangeService {
     }
 
     @Override
-    public Money exchange(Money source, String targetCurrency) {
-        return null;
+    public Money exchange(BigDecimal amount, Currency amountCurrency, Currency targetCurrency) {
+        return Money.of(amount.multiply(exchangeRates.get(new Pair<>(amountCurrency, targetCurrency))),targetCurrency.toString());
     }
 
     @Override
     public HashSet<String> getSupportedCurrencies() {
         return CurrencyUtil.getCurrencySet();
-    }
-
-    @Override
-    public BigDecimal exchangeRate(String sourceCurrency, String targetCurrency) {
-        return null;
     }
 }

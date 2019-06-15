@@ -1,5 +1,7 @@
 package transactions.Service;
 
+import com.google.inject.ImplementedBy;
+import global.common.Currency;
 import org.javamoney.moneta.Money;
 
 import javax.money.CurrencyUnit;
@@ -11,12 +13,12 @@ import java.util.HashSet;
  *
  * @author omji
  */
+
+@ImplementedBy(ExchangeServiceImpl.class)
 public interface ExchangeService {
     boolean checkCurrencyCode(CurrencyUnit currencyUnit);
 
-    Money exchange(Money source, String targetCurrency);
-
     HashSet<String> getSupportedCurrencies();
 
-    BigDecimal exchangeRate(String sourceCurrency, String targetCurrency);
+    Money exchange(BigDecimal amount, Currency amountCurrency, Currency targetCurrency);
 }
