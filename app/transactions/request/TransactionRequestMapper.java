@@ -63,14 +63,19 @@ public class TransactionRequestMapper {
             throw new CustomException("currency code is needed to proceed with the transfer");
         }
 
-        try {
-            final BigDecimal amount = new BigDecimal(amountCandidate);
-            final CurrencyUnit currency = Monetary.getCurrency(currencyCandidate.toUpperCase());
-            return Money.of(amount, currency);
-        } catch (NumberFormatException e) {
-            throw new CustomException("amount must represent a money value (i.e.: 1030 or 22.65 or 100)");
-        } catch (UnknownCurrencyException e) {
-            throw new CustomException("currency code specified is not valid (i.e: INR,EUR,USD)");
+        if (new BigDecimal(amountCandidate).compareTo(BigDecimal.ZERO) > 0) {
+            try {
+                final BigDecimal amount = new BigDecimal(amountCandidate);
+                final CurrencyUnit currency = Monetary.getCurrency(currencyCandidate.toUpperCase());
+                return Money.of(amount, currency);
+            } catch (NumberFormatException e) {
+                throw new CustomException("amount must represent a money value (i.e.: 1030 or 22.65 or 100)");
+            } catch (UnknownCurrencyException e) {
+                throw new CustomException("currency code specified is not valid (i.e: INR,EUR,USD)");
+            }
+        } else {
+            throw new CustomException("Transaction Amount can not be zero or negative.");
         }
+
     }
 }

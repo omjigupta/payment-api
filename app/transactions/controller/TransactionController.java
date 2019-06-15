@@ -40,7 +40,7 @@ public class TransactionController extends BaseController {
             final TransactionState log = transactionStateService.stateLog(finishedTransfer, TransactionStatus.SUCCESS.name());
             return created(log.asJson());
         } catch (CustomException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return failure(e.getMessage());
         }
     }

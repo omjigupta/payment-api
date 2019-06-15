@@ -40,6 +40,10 @@ public final class TransactionServiceImpl implements TransactionService{
             throw new CustomException("Receiver account does not exist");
         }
 
+        if (transaction.getAmount().isNegativeOrZero()) {
+            throw new CustomException("Transaction Amount can not be zero or negative.");
+        }
+
     }
 
     private void doTransaction(Transaction transaction) {
