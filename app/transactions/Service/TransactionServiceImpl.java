@@ -28,6 +28,10 @@ public final class TransactionServiceImpl implements TransactionService{
         final Long originAccount = transaction.getSenderAccountId();
         final Long destinationAccount = transaction.getReceiverAccountId();
 
+        if (originAccount.compareTo(destinationAccount) == 0) {
+            throw new CustomException("Sender and Receiver account can not be same!! Please check it again.");
+        }
+
         if (!accountRepository.checkAccountExists(originAccount)) {
             throw new CustomException("Sender account does not exist");
         }
@@ -35,6 +39,7 @@ public final class TransactionServiceImpl implements TransactionService{
         if (!accountRepository.checkAccountExists(destinationAccount)) {
             throw new CustomException("Receiver account does not exist");
         }
+
     }
 
     private void doTransaction(Transaction transaction) {
