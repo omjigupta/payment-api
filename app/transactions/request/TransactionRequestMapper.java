@@ -1,6 +1,8 @@
 package transactions.request;
 
+import global.common.CurrencyUtil;
 import global.exception.CustomException;
+import lombok.NonNull;
 import org.javamoney.moneta.Money;
 import transactions.models.Transaction;
 
@@ -67,7 +69,12 @@ public class TransactionRequestMapper {
             try {
                 final BigDecimal amount = new BigDecimal(amountCandidate);
                 final CurrencyUnit currency = Monetary.getCurrency(currencyCandidate.toUpperCase());
-                return Money.of(amount, currency);
+                if (checkCurrencyCode(currency)) {
+                    return Money.of(amount, currency);
+                }
+                else {
+                    throw new CustomException("Currently, We are not supporting input currency transaction!!");
+                }
             } catch (NumberFormatException e) {
                 throw new CustomException("amount must represent a money value (i.e.: 1030 or 22.65 or 100)");
             } catch (UnknownCurrencyException e) {
@@ -77,5 +84,10 @@ public class TransactionRequestMapper {
             throw new CustomException("Transaction Amount can not be zero or negative.");
         }
 
+    }
+
+    private boolean checkCurrencyCode(@NonNull CurrencyUnit currencyUnit) {
+
+        return CurrencyUtil.getCurrencySet().contains(currencyUnit.getCurrencyCode());
     }
 }

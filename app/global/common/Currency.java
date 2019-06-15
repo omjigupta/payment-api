@@ -7,6 +7,6 @@ package global.common;
  */
 public enum Currency {
 
-    INR, USD, EUR;
+    INR, USD, EUR
 
 }
