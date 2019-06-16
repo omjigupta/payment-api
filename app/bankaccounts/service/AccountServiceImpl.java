@@ -1,5 +1,6 @@
 package bankaccounts.service;
 
+import bankaccounts.models.Account;
 import bankaccounts.repository.AccountRepository;
 import com.google.inject.Inject;
 
@@ -16,5 +17,10 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public BigDecimal getAccountBalance(String accountNumber) {
         return accountRepository.findBalance(Long.decode(accountNumber));
+    }
+
+    @Override
+    public Account getAccount(String accountNumber) {
+        return accountRepository.findAccount(Long.decode(accountNumber));
     }
 }

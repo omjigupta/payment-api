@@ -4,6 +4,7 @@ import bankaccounts.models.Account;
 import com.google.inject.Inject;
 import customers.repository.CustomerRepository;
 import global.configuration.jooq.JooqClient;
+import lombok.NonNull;
 import org.javamoney.moneta.Money;
 import org.jooq.Record1;
 
@@ -28,7 +29,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 
     @Override
-    public BigDecimal findBalance(Long accountNumber) {
+    public BigDecimal findBalance(@NonNull Long accountNumber) {
         final Record1<BigDecimal> balance = jooq.client()
                 .select(ACCOUNT.BALANCE)
                 .from(ACCOUNT)
@@ -39,7 +40,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public CurrencyUnit findCurrency(Long accountNumber) {
+    public CurrencyUnit findCurrency(@NonNull Long accountNumber) {
         final Record1<String> currency = jooq.client()
                 .select(ACCOUNT.CURRENCY)
                 .from(ACCOUNT)
@@ -50,7 +51,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Long findAccountNumber(String customerGovtId) {
+    public Long findAccountNumber(@NonNull String customerGovtId) {
         final Long customerId = customerRepository.findId(customerGovtId);
 
         final Record1<Long> accoutNumber = jooq.client()
@@ -63,7 +64,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public boolean checkAccountExists(Long accountNumber) {
+    public boolean checkAccountExists(@NonNull Long accountNumber) {
         return jooq.client()
                 .select(ACCOUNT.ID)
                 .from(ACCOUNT)
@@ -73,7 +74,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account findAccount(Long accountNumber) {
+    public Account findAccount(@NonNull Long accountNumber) {
         return jooq.client()
                 .select()
                 .from(ACCOUNT)
@@ -82,7 +83,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public boolean addAmount(Long accountNumber, Money amount) {
+    public boolean addAmount(@NonNull Long accountNumber,@NonNull Money amount) {
         final int amountAdded = jooq.client()
                 .update(ACCOUNT)
                 .set(ACCOUNT.BALANCE, ACCOUNT.BALANCE.add(amount.getNumberStripped()))
@@ -93,7 +94,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public boolean removeAmount(Long accountNumber, Money amount) {
+    public boolean removeAmount(@NonNull Long accountNumber,@NonNull Money amount) {
         final int amountRemoved = jooq.client()
                 .update(ACCOUNT)
                 .set(ACCOUNT.BALANCE, ACCOUNT.BALANCE.sub(amount.getNumberStripped()))
