@@ -54,12 +54,14 @@ public class TransactionServiceImpl implements TransactionService{
         final Long destination = transaction.getReceiverAccountId();
         final Long origin = transaction.getSenderAccountId();
         final Money amount = transaction.getAmount();
-        Currency currency = Currency.valueOf(accountRepository.findCurrency(destination).getCurrencyCode());
+        Currency destinationCurrency = Currency.valueOf(accountRepository.findCurrency(destination).getCurrencyCode());
+        Currency originCurrency = Currency.valueOf(accountRepository.findCurrency(origin).getCurrencyCode());
 
-        Money addAmount = exchangeService.exchange(amount.getNumberStripped(), Currency.valueOf(transaction.getAmount().getCurrency().getCurrencyCode()), currency);
+        Money addAmount = exchangeService.exchange(amount.getNumberStripped(), Currency.valueOf(transaction.getAmount().getCurrency().getCurrencyCode()), destinationCurrency);
+        Money removeAmount = exchangeService.exchange(amount.getNumberStripped(), Currency.valueOf(transaction.getAmount().getCurrency().getCurrencyCode()), originCurrency);
 
         accountRepository.addAmount(destination, addAmount);
-        accountRepository.removeAmount(origin, amount);
+        accountRepository.removeAmount(origin, removeAmount);
         transaction.setStatus(TransactionStatus.SUCCESS);
     }
 }

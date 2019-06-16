@@ -59,6 +59,10 @@ sbt test
 1) Java JDK 1.8
 2) Scala SBT 1.2.8
 
+### Currency Support:
+1) Currently, Application is supporting only INR, USD and EUR.
+2) Currency conversion values are hardcoded for now. Conversion rates added from [exchange](https://www.xe.com/currencyconverter/).
+
 ## Endpoints:
 
 ### (GET) Ping - "About me" and application start request
@@ -126,6 +130,28 @@ Host: localhost:9000
 * HTTP Response:
 
 ![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_between_different_currency.png)
+
+### (POST) Transfers money between cross currency accounts when given amount in different currency
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":124800,
+"receiverAccountId":533000,
+"amount":1,
+"currency":"USD"
+}
+```
+* HTTP Response:
+You can see selected part of image.
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transferamount_currency_is_different_from_accounts.png)
 
 ### (POST) Transfers money between cross currency accounts if Sender doesn't have enough fund
 ```
