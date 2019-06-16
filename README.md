@@ -235,5 +235,5 @@ Host: localhost:9000
 ```
 * HTTP Response:
 
-![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/worngaccount.png)
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/wrongaccount.png)
 
