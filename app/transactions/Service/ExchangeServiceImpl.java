@@ -1,8 +1,8 @@
 package transactions.Service;
 
+import akka.japi.Pair;
 import global.common.Currency;
 import global.common.CurrencyUtil;
-import javafx.util.Pair;
 import lombok.NonNull;
 import org.javamoney.moneta.Money;
 

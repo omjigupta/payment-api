@@ -21,24 +21,24 @@ And then go to http://localhost:9000 to see the running web application.
 
 ### Running as Standalone server
 
-#### Using tar payment-api-0.1.tgz
-1) Download the payment-api-0.1.tgz file available in the root of the project. If you clone this repo you will get inside the payment-api main directory.
+#### Using tar payment-api-1.0.tgz
+1) Download the payment-api-1.0.tgz file available in the root of the project. If you clone this repo you will get inside the payment-api main directory.
 2) Extract the tar file in a folder of your preference.
 
 ```
-tar -xvzf /path/to/payment-api-0.1.tgz
+tar -xvzf /path/to/payment-api-1.0.tgz
 ```
 
 3) You can either navigate to the extracted folder or execute the app from the folder you are.
 
 ```
-payment-api-0.1/bin/payment-api -Dplay.http.secret.key=omjigupta
+payment-api-1.0/bin/payment-api -Dplay.http.secret.key=omjigupta
 ```
-#### Using zip payment-api-0.1.zip
-1) Download the payment-api-0.1.zip file available in the root of the project.
+#### Using zip payment-api-1.0.zip
+1) Download the payment-api-1.0.zip file available in the root of the project.
 2) Extract the zip file in a folder of your preference.
 ```
-unzip payment-api-0.1.zip 
+unzip payment-api-1.0.zip 
 ```
 3) Navigate to the extracted folder or execute below command to run it
 ```
