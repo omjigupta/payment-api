@@ -9,7 +9,7 @@ import org.javamoney.moneta.Money;
 import org.jooq.meta.derby.sys.Sys;
 import transactions.models.Transaction;
 
-public final class TransactionServiceImpl implements TransactionService{
+public class TransactionServiceImpl implements TransactionService{
 
     private AccountRepository accountRepository;
     private ExchangeService exchangeService;
@@ -54,9 +54,10 @@ public final class TransactionServiceImpl implements TransactionService{
         final Long destination = transaction.getReceiverAccountId();
         final Long origin = transaction.getSenderAccountId();
         final Money amount = transaction.getAmount();
+        Currency currency = Currency.valueOf(accountRepository.findCurrency(destination).getCurrencyCode());
 
-        Money addAmount = exchangeService.exchange(amount.getNumberStripped(), Currency.valueOf(transaction.getAmount().getCurrency().getCurrencyCode()),accountRepository.findAccount(destination).getCurrency());
-        //Money removeAmount = exchangeService.exchange(amount.getNumberStripped(), accountRepository.findAccount(destination).getCurrency(),accountRepository.findAccount(origin).getCurrency());
+        Money addAmount = exchangeService.exchange(amount.getNumberStripped(), Currency.valueOf(transaction.getAmount().getCurrency().getCurrencyCode()), currency);
+
         accountRepository.addAmount(destination, addAmount);
         accountRepository.removeAmount(origin, amount);
         transaction.setStatus(TransactionStatus.SUCCESS);
