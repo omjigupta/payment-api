@@ -195,3 +195,45 @@ Host: localhost:9000
 
 ![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/NegativeBalanceTest.png)
 
+### (POST) Transfers Negative money between cross currency accounts
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":324800,
+"receiverAccountId":533000,
+"amount":10,
+"currency":"YEN"
+}
+```
+* HTTP Response:
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/wrongCurrency.png)
+
+### (POST) Transfers money when account doesn't exist
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":3200,
+"receiverAccountId":533000,
+"amount":10,
+"currency":"USD"
+}
+```
+* HTTP Response:
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/worngaccount.png)
+

@@ -59,7 +59,6 @@ public class TransactionBetweenCrossCurrencyAccountsTest extends WithApplication
 
         final Http.RequestBuilder build = TransactionTestHelper.getTransactionRequest(AMOUNT, SENDER_ACC, RECEIVER_ACC, CURRENCY);
         final CompletableFuture<Result> sendToAccount = CompletableFuture.supplyAsync(() -> Helpers.route(this.app, build));
-        //sendToAccount.isCompletedExceptionally()
 
         Thread.sleep(1000);
 
@@ -78,7 +77,57 @@ public class TransactionBetweenCrossCurrencyAccountsTest extends WithApplication
 
         final Http.RequestBuilder build = TransactionTestHelper.getTransactionRequest(AMOUNT, SENDER_ACC, RECEIVER_ACC, CURRENCY);
         final CompletableFuture<Result> sendToAccount = CompletableFuture.supplyAsync(() -> Helpers.route(this.app, build));
-        //sendToAccount.isCompletedExceptionally()
+
+        Thread.sleep(1000);
+
+        if (sendToAccount.isCompletedExceptionally()) {
+            assertThat(sendToAccount.isCompletedExceptionally()).isEqualTo(BAD_REQUEST);
+        }
+    }
+
+    @Test
+    public void testTransactionWithNullAmount() throws InterruptedException {
+        String AMOUNT = ""; //Account balance is 10 EURO in sender account
+
+        when(accountRepository.checkAccountExists(Long.decode(RECEIVER_ACC))).thenReturn(true);
+        when(accountRepository.checkAccountExists(Long.decode(SENDER_ACC))).thenReturn(true);
+
+        final Http.RequestBuilder build = TransactionTestHelper.getTransactionRequest(AMOUNT, SENDER_ACC, RECEIVER_ACC, CURRENCY);
+        final CompletableFuture<Result> sendToAccount = CompletableFuture.supplyAsync(() -> Helpers.route(this.app, build));
+
+        Thread.sleep(1000);
+
+        if (sendToAccount.isCompletedExceptionally()) {
+            assertThat(sendToAccount.isCompletedExceptionally()).isEqualTo(BAD_REQUEST);
+        }
+    }
+
+    @Test
+    public void testTransactionWithCurrencyNonExistence() throws InterruptedException {
+        String CURRENCY = "JPY";
+
+        when(accountRepository.checkAccountExists(Long.decode(RECEIVER_ACC))).thenReturn(true);
+        when(accountRepository.checkAccountExists(Long.decode(SENDER_ACC))).thenReturn(true);
+
+        final Http.RequestBuilder build = TransactionTestHelper.getTransactionRequest(AMOUNT, SENDER_ACC, RECEIVER_ACC, CURRENCY);
+        final CompletableFuture<Result> sendToAccount = CompletableFuture.supplyAsync(() -> Helpers.route(this.app, build));
+
+        Thread.sleep(1000);
+
+        if (sendToAccount.isCompletedExceptionally()) {
+            assertThat(sendToAccount.isCompletedExceptionally()).isEqualTo(BAD_REQUEST);
+        }
+    }
+
+    @Test
+    public void testTransactionWhenSenderAccountNonAvailable() throws InterruptedException {
+        String SENDER_ACC = "12480";
+
+        when(accountRepository.checkAccountExists(Long.decode(RECEIVER_ACC))).thenReturn(false);
+        when(accountRepository.checkAccountExists(Long.decode(SENDER_ACC))).thenReturn(true);
+
+        final Http.RequestBuilder build = TransactionTestHelper.getTransactionRequest(AMOUNT, SENDER_ACC, RECEIVER_ACC, CURRENCY);
+        final CompletableFuture<Result> sendToAccount = CompletableFuture.supplyAsync(() -> Helpers.route(this.app, build));
 
         Thread.sleep(1000);
 
