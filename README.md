@@ -127,3 +127,45 @@ Host: localhost:9000
 
 ![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_between_different_currency.png)
 
+### (POST) Transfers money between cross currency accounts if Sender doesn't have enough fund
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":124800,
+"receiverAccountId":533000,
+"amount":15,
+"currency":"EUR"
+}
+```
+* HTTP Response:
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/notEnoughBalance.png)
+
+### (POST) Transfers Negative money between cross currency accounts
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":124800,
+"receiverAccountId":533000,
+"amount":-1,
+"currency":"EUR"
+}
+```
+* HTTP Response:
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/NegativeBalanceTest.png)
+
