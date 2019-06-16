@@ -11,4 +11,6 @@ public interface AccountService {
     BigDecimal getAccountBalance(String accountNumber);
 
     Account getAccount(String accountNumber);
+
+    boolean checkAccountExists(String accountNumber);
 }

@@ -27,6 +27,7 @@ public class TransactionRequestMapper {
     }
 
     public Transaction transform(@NonNull TransactionRequestDTO transactionRequestDTO) {
+        validateAccounts(transactionRequestDTO);
         final Long sender = parseSenderAccountId(transactionRequestDTO);
         final Long receiver = parseReceiverAccountId(transactionRequestDTO);
         final Money amount = parseTransferAmount(transactionRequestDTO);
@@ -101,6 +102,24 @@ public class TransactionRequestMapper {
             }
         } else {
             throw new CustomException("Transaction Amount can not be zero or negative.");
+        }
+
+    }
+
+    private void validateAccounts(TransactionRequestDTO transactionRequestDTO) {
+        final String originAccount = transactionRequestDTO.getSenderAccountId();
+        final String destinationAccount = transactionRequestDTO.getReceiverAccountId();
+
+        if (originAccount.equalsIgnoreCase(destinationAccount)) {
+            throw new CustomException("Sender and Receiver account can not be same!! Please check it again.");
+        }
+
+        if (!accountService.checkAccountExists(originAccount)) {
+            throw new CustomException("Sender account does not exist");
+        }
+
+        if (!accountService.checkAccountExists(destinationAccount)) {
+            throw new CustomException("Receiver account does not exist");
         }
 
     }

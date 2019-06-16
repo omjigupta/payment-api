@@ -23,4 +23,9 @@ public class AccountServiceImpl implements AccountService{
     public Account getAccount(String accountNumber) {
         return accountRepository.findAccount(Long.decode(accountNumber));
     }
+
+    @Override
+    public boolean checkAccountExists(String accountNumber) {
+        return accountRepository.checkAccountExists(Long.decode(accountNumber));
+    }
 }
