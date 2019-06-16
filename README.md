@@ -61,6 +61,18 @@ sbt test
 
 ## Endpoints:
 
+### (GET) Ping - "About me" and application start request
+```
+http://localhost:9000/about
+```
+By Hitting above request you will be redirected to my LinkedIn profile
+
+```
+http://localhost:9000/
+```
+By Hitting this request you can check application is running or not
+
+
 ### (GET) Get the Balance of Specific Account
 ```
 http://localhost:9000/v1/accounts/424800/balance
@@ -73,7 +85,7 @@ http://localhost:9000/v1/accounts/1234/balance
 ```
 ![wrongAccount](https://github.com/omjigupta/payment-api/blob/master/screenshots/balance_wrongAccount.png)
 
-### (POST)Transfers money between two accounts
+### (POST) Transfers money between same currency accounts
 ```
 http://localhost:9000/v1/transactions
 ```
@@ -84,12 +96,34 @@ Accept: application/json
 Host: localhost:9000
 
 {
-"senderAccountId":424800,
-"receiverAccountId":124800,
-"amount":1,
-"currency":"USD"
+"senderAccountId":324800,
+"receiverAccountId":533000,
+"amount":10,
+"currency":"INR"
 }
 ```
 * HTTP Response:
 
-![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_1.png)
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_between_same_currency.png)
+
+### (POST) Transfers money between cross currency accounts
+```
+http://localhost:9000/v1/transactions
+```
+* HTTP Request:
+```json
+POST /v1/transactions HTTP/1.1
+Accept: application/json
+Host: localhost:9000
+
+{
+"senderAccountId":124800,
+"receiverAccountId":533000,
+"amount":1,
+"currency":"EUR"
+}
+```
+* HTTP Response:
+
+![transfer](https://github.com/omjigupta/payment-api/blob/master/screenshots/transfer_money_between_different_currency.png)
+
