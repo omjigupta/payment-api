@@ -1,6 +1,5 @@
 # Money Transfer Api
 
-
 ## play-java-payment application v2.6 + H2 DB + Jooq (Play JPA implementation)
 
 This is a starter application that has base setup of Play 2.6 with H2 as database. This repository will constantly updated on better changes.
